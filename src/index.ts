@@ -1,5 +1,6 @@
 require("dotenv").config();
 import bodyParser from "body-parser";
+const cors = require("cors")
 import express from "express";
 const Pool = require("pg").Pool;
 
@@ -15,9 +16,12 @@ const pool = new Pool({
 const app = express();
 const port = process.env.PORT || 3333;
 
-app.use(bodyParser.json());
-app.use(bodyParser.raw({ type: "application/vnd.custom-type" }));
-app.use(bodyParser.text({ type: "text/html" }));
+// app.use(bodyParser.json());
+// app.use(bodyParser.raw({ type: "application/vnd.custom-type" }));
+// app.use(bodyParser.text({ type: "text/html" }));
+
+app.use(cors());
+app.use(express.json());
 
 app.get("/", async (req, res) => {
   const { rows } = await pool.query("SELECT NOW()");
