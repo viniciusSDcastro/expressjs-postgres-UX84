@@ -24,6 +24,15 @@ app.get("/", async (req, res) => {
   res.send(`Hello, World! The time from the DB is ${rows[0].now}`);
 });
 
+app.get("/filme",async (req, res) => {
+    try {
+      const allTodos = await pool.query("SELECT * FROM filme ORDER BY id ASC");
+      res.json(allTodos.rows)
+    } catch (error) {
+      console.log(error)
+    }
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
