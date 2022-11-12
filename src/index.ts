@@ -1,10 +1,16 @@
+require("dotenv").config();
 import bodyParser from "body-parser";
 import express from "express";
-import pg from "pg";
+const Pool = require("pg").Pool;
 
 // Connect to the database using the DATABASE_URL environment
 //   variable injected by Railway
-const pool = new pg.Pool();
+
+const proConfig = process.env.DATABASE_URL;
+const pool = new Pool({
+  connectionString:proConfig 
+});
+
 
 const app = express();
 const port = process.env.PORT || 3333;
