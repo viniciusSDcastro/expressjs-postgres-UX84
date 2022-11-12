@@ -30,9 +30,9 @@ app.get("/", async (req, res) => {
 
 app.get("/filme",async (req, res) => {
     try {
-      //const allTodos = await pool.query("SELECT * FROM filme ORDER BY id ASC");
-      //res.json(allTodos.rows)
-      res.send(`LOL`);
+      const allTodos = await pool.query("SELECT * FROM filme ORDER BY id ASC");
+      res.json(allTodos.rows)
+      //res.send(`LOL`);
     } catch (error) {
       console.log(error)
     }
