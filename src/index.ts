@@ -24,7 +24,7 @@ app.get("/", async (req, res) => {
   res.send(`Hello, World! The time from the DB is ${rows[0].now}`);
 });
 
-app.get("/filme",async (req, res) => {
+app.get("expressjs-postgres-production-cece.up.railway.app/filme",async (req, res) => {
     try {
       const allTodos = await pool.query("SELECT * FROM filme ORDER BY id ASC");
       res.json(allTodos.rows)
