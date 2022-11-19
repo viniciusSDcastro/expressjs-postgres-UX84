@@ -103,7 +103,7 @@ app.post("/atua", async(req,res) => {
       res.json(newAtua.rows[0])
   } catch (error) {
     //console.log(error)
-    res.json({"concluido": 0})
+    res.status(500).send(error)
   }
 })
 
