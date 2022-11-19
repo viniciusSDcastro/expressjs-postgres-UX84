@@ -64,7 +64,11 @@ app.get("/atua",async (req, res) => {
          JOIN filme ON (atua.filme = filme.id)
          JOIN ator ON (atua.ator = ator.id)`);
          */
-        const allAtua = await pool.query("SELECT * FROM atua ORDER BY id ASC");
+        const allAtua = await pool.query(`SELECT atua.filme, atua.ator, atua.personagem, filme.nome as filme_nome, ator.nome as ator_nome
+        FROM atua
+        JOIN filme ON (atua.filme = filme.id)
+        JOIN ator ON (atua.ator = ator.id)`)
+        //const allAtua = await pool.query("SELECT * FROM atua ORDER BY id ASC");
     res.json(allAtua.rows)
     //res.send(`LOL`);
   } catch (error) {
