@@ -102,7 +102,8 @@ app.post("/atua", async(req,res) => {
 
       res.json(newAtua.rows[0])
   } catch (error) {
-    console.log(error)
+    //console.log(error)
+    res.json({"concluido": 0})
   }
 })
 
@@ -110,8 +111,8 @@ app.put("/filmes/:id",async(req,res) => {
   try {
       const {id} = req.params;
       const {nome,class_indicativa,duracao} = req.body
-      const updateTodo = await pool.query("UPDATE filmes SET nome = $1 where id = $2",[nome,id]);
-      const updateTodo2 = await pool.query("UPDATE filmes SET class_indicativa = $1 where id = $2",[class_indicativa,id]);
+      const updateFilme = await pool.query("UPDATE filmes SET nome = $1 where id = $2",[nome,id]);
+      const updateFilme2 = await pool.query("UPDATE filmes SET class_indicativa = $1 where id = $2",[class_indicativa,id]);
       const updateFIlme3 = await pool.query("UPDATE filmes SET duracao = $1 where id = $2",[duracao,id]);
       res.json("Todo foi atualizado!")
   } catch (error) {
