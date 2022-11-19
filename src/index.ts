@@ -83,9 +83,9 @@ app.post("/filmes", async(req,res) => {
 app.post("/ator", async(req,res) => {
   try {
       const{nome,pais,idade} = req.body
-      const newTodo = await pool.query('INSERT INTO filmes (nome,pais, idade) VALUES ($1, $2, $3) RETURNING *',[nome,pais, idade] );
+      const newAtor = await pool.query('INSERT INTO ator (nome,pais, idade) VALUES ($1, $2, $3) RETURNING *',[nome,pais, idade] );
 
-      res.json(newTodo.rows[0])
+      res.json(newAtor.rows[0])
   } catch (error) {
     // console.log(error)
     res.send(`Hello, World! The time from the DB is ${error}`);
