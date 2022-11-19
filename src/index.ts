@@ -1,7 +1,7 @@
 require("dotenv").config();
 import bodyParser from "body-parser";
 //mudei abaixo
-//const cors = require("cors")
+const cors = require("cors")
 import express from "express";
 const Pool = require("pg").Pool;
 
@@ -21,8 +21,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.raw({ type: "application/vnd.custom-type" }));
 app.use(bodyParser.text({ type: "text/html" }));
 //mudei abaixo
-//app.use(cors());
+app.use(cors());
 app.use(express.json());
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+})
+
 
 app.get("/", async (req, res) => {
   const { rows } = await pool.query("SELECT NOW()");
