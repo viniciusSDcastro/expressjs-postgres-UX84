@@ -95,7 +95,7 @@ app.post("/ator", async(req,res) => {
 app.post("/atua", async(req,res) => {
   try {
       const{filme,ator,personagem} = req.body
-      const newTodo = await pool.query('INSERT INTO filmes (filme,ator,personagem) VALUES ($1, $2, $3) RETURNING *',[filme,ator,personagem] );
+      const newTodo = await pool.query('INSERT INTO atua (filme,ator,personagem) VALUES ($1, $2, $3) RETURNING *',[filme,ator,personagem] );
 
       res.json(newTodo.rows[0])
   } catch (error) {
@@ -121,9 +121,9 @@ app.put("/ator/:id",async(req,res) => {
   try {
       const {id} = req.params;
       const {nome,pais,idade} = req.body
-      const updateTodo = await pool.query("UPDATE filme SET nome = $1 where id = $2",[nome,id]);
-      const updateTodo2 = await pool.query("UPDATE filme SET pais = $1 where id = $2",[pais,id]);
-      const updateFIlme3 = await pool.query("UPDATE filme SET idade = $1 where id = $2",[idade,id]);
+      const updateTodo = await pool.query("UPDATE ator SET nome = $1 where id = $2",[nome,id]);
+      const updateTodo2 = await pool.query("UPDATE ator SET pais = $1 where id = $2",[pais,id]);
+      const updateFIlme3 = await pool.query("UPDATE ator SET idade = $1 where id = $2",[idade,id]);
       res.json("Todo foi atualizado!")
   } catch (error) {
     console.log(error)
@@ -137,9 +137,9 @@ app.put("/atua/:id",async(req,res) => {
       const {filme,ator, personagem} = req.body
       console.log(`filme = ${filme}/ ator = ${ator} / personagem = ${personagem}`)
       //console.log(id,nome,nascimento)
-      const updateAtua = await pool.query("UPDATE elenco SET filme = $1 where id = $2",[filme,id]);
-      const updateAtor2 = await pool.query("UPDATE elenco SET ator = $1 where id = $2",[ator,id]);
-      const updateAtor3 = await pool.query("UPDATE elenco SET personagem = $1 where id = $2",[personagem,id]);
+      const updateAtua = await pool.query("UPDATE atua SET filme = $1 where id = $2",[filme,id]);
+      const updateAtor2 = await pool.query("UPDATE atua SET ator = $1 where id = $2",[ator,id]);
+      const updateAtor3 = await pool.query("UPDATE atua SET personagem = $1 where id = $2",[personagem,id]);
       res.json("Todo foi atualizado!")
   } catch (error) {
       console.log(error)
