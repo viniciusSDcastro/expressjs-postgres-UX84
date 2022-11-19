@@ -95,9 +95,9 @@ app.post("/ator", async(req,res) => {
 app.post("/atua", async(req,res) => {
   try {
       const{filme,ator,personagem} = req.body
-      const newTodo = await pool.query('INSERT INTO atua (filme,ator,personagem) VALUES ($1, $2, $3) RETURNING *',[filme,ator,personagem] );
+      const newAtua= await pool.query('INSERT INTO atua (filme,ator,personagem) VALUES ($1, $2, $3) RETURNING *',[filme,ator,personagem] );
 
-      res.json(newTodo.rows[0])
+      res.json(newAtua.rows[0])
   } catch (error) {
     console.log(error)
   }
