@@ -90,8 +90,8 @@ app.post("/ator", async(req,res) => {
 
       res.json(newAtor.rows[0])
   } catch (error) {
-    // console.log(error)
-    res.send(`Hello, World! The time from the DB is ${error}`);
+     console.log(error)
+    
   }
 })
 
@@ -157,7 +157,7 @@ app.delete("/filmes/:id",async(req,res) => {
       const deletFilme = await pool.query("DELETE FROM filmes WHERE id = $1",[id]);
       res.json("filme foi deletado!!")
   } catch (error) {
-    console.log(error)
+    res.status(500).send(error)
 }
 })
 
@@ -167,7 +167,7 @@ app.delete("/ator/:id",async(req,res) => {
       const deletAtor = await pool.query("DELETE FROM ator WHERE id = $1",[id]);
       res.json("Ator foi deletado!!")
   } catch (error) {
-    console.log(error)
+    res.status(500).send(error)
 }
 })
 
