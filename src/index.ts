@@ -87,7 +87,8 @@ app.post("/ator", async(req,res) => {
 
       res.json(newTodo.rows[0])
   } catch (error) {
-    console.log(error)
+    // console.log(error)
+    res.send(`Hello, World! The time from the DB is ${error}`);
   }
 })
 
